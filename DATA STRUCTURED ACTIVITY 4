@@ -53,37 +53,37 @@ class LinkedList:
             current = current.next
         print(value, "was not found.")
 
-# Driver code
-my_list = LinkedList()
-print("Inserting values...")
-my_list.insert("nmni")
-my_list.insert(20)
-my_list.insert(30)
-my_list.insert(40)
+mylist = LinkedList()
+mylist.insert("Quiz")
+mylist.insert("Laboratory_Exercise")
+mylist.insert("Midterm_Examination")
+mylist.insert("Presentation")
+mylist.insert(None)
+
 
 print("\nOriginal Activities:")
-my_list.display()
+mylist.display()
 
 print("\nSearching for project:")
-value = 30
-if my_list.search(value):
-    print(value, "was found.")
+project = "Quiz"
+if mylist.search(project):
+    print(project, "was found.")
 else:
-    print(value, "was not found.")
+    print(project, "was not found.")
 
-value = 50
-if my_list.search(value):
-    print(value, "was found.")
+project = "Presentation"
+if mylist.search(project):
+    print(project, "was found.")
 else:
-    print(value, "was not found.")
+    print(project, "was not found.")
 
 print("\nSearching for Final examination:")
-my_list.delete(20)
+mylist.delete(20)
 
 print("\nLinked List after deleting 20:")
-my_list.display()
+mylist.display()
 
-my_list.delete(40)
+mylist.delete(40)
 
 print("\nUpdated Activities:")
-my_list.display()
+mylist.display()
