@@ -78,12 +78,12 @@ else:
     print(project, "was not found.")
 
 print("\nSearching for Final examination:")
-mylist.delete(20)
+mylist.delete("Final examination")
 
-print("\nLinked List after deleting 20:")
-mylist.display()
 
-mylist.delete(40)
+print("\nLinked List after deleting Midterm_Examination")
+
+mylist.delete("Midterm_Examination")
 
 print("\nUpdated Activities:")
 mylist.display()
