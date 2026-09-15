@@ -1,0 +1,8 @@
+# Activity 2
+
+1. What is the output of Algorithm A? 50
+2. What is the output of Algorithm B? 50
+3. What is the Big O time complexity of Algorithm A? Explain. O(n) one loop only, and it’s looking for all numbers  for once if it gets new data
+4. What is the Big O time complexity of Algorithm B? Explain. O(n) have one loop in list comprehension 
+5. Which algorithm uses less additional memory? Explain. Algorithm A uses O(1) only count and Algorithm B uses O(n) because it creates new list 
+6. If the dataset increased from 100 to 1,000,000 numbers, would the Big O complexity change? No
