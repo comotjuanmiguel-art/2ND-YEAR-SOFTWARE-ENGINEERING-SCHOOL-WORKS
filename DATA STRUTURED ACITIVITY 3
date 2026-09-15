@@ -1,37 +1,41 @@
-# ACTIVITY 3
+# Activity 3
 
-raw_order = " oRdEr_ID: #89421-US | CuStOmEr: 'sArAh cOnNoR' | iTeM: \"wireless mechanical keyboard\" | pRiCe: $149.9982 | StAtUs: PENDING "
+raw_order = " oRdEr_ID: #89421-phillipines | CuStOmEr: 'sArAh cOnNoR' | iTeM: \"wireless mechanical keyboard\" | pRiCe: $149.9982 | StAtUs: PENDING "
 
 cleaned_order = raw_order.strip()
-fields = [field.strip() for field in cleaned_order.split("|")]
+parts = [part.strip() for part in cleaned_order.split("|")]
 
-order_dict = {}
-for field in fields:
-    key, value = field.split(":", 1)
-    order_dict[key.strip().lower()] = value.strip()
 
-order_id_full = order_dict["order_id"].replace("#", "") 
-order_code, country_code = order_id_full.split("-")      
+order_id_part = parts[0].split(":")[1].strip()
 
-customer_raw = order_dict["customer"].replace("'", "")     
-customer_name = customer_raw.title()                       
 
-item_raw = order_dict["item"].replace('"', '')            
-item_name = item_raw.title()                              
+order_code = order_id_part.split("-")[0].replace("#", "")
+raw_country = order_id_part.split("-")[1]
 
-price_raw = order_dict["price"].replace("$", "")           
-price_val = round(float(price_raw), 2) 
 
-price_formatted = f"${price_val:.2f}"                      
+country_code = "PH" if raw_country.lower() == "phillipines" else raw_country.upper()
 
+customer_part = parts[1].split(":")[1].strip()
+customer_name = customer_part.replace("'", "").title()
+
+item_part = parts[2].split(":")[1].strip()
+item_name = item_part.replace('"', "").title()
+
+price_part = parts[3].split(":")[1].strip()
+price_value = float(price_part.replace("$", ""))
+formatted_price = round(price_value, 2)
+
+
+status_part = parts[4].split(":")[1].strip()
+status_name = status_part.title()
 
 summary_report = (
-    f"ORDER SUMMARY REPORT\n"
-    f"====================\n"
-    f"Order ID:\t{order_code}\n"
-    f"Country:\t{country_code}\n"
-    f"Customer:\t{customer_name}\n"
-    f"Item:\t\t{item_name}\n"
-    f"Price:\t\t{price_formatted}")
+    f"ORDER SUMMARY:\n"
+    f"\tOrder ID:\t{order_code} (Country: {country_code})\n"
+    f"\tCustomer:\t{customer_name}\n"
+    f"\tPurchased:\t\t{item_name}\n"
+    f"\tTotal paid:\t\t${formatted_price:.2f}\n"
+    f"\tStatus:\t\t{status_name}")
 
 print(summary_report)
+
