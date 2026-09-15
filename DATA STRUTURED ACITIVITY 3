@@ -1,0 +1,37 @@
+# ACTIVITY 3
+
+raw_order = " oRdEr_ID: #89421-US | CuStOmEr: 'sArAh cOnNoR' | iTeM: \"wireless mechanical keyboard\" | pRiCe: $149.9982 | StAtUs: PENDING "
+
+cleaned_order = raw_order.strip()
+fields = [field.strip() for field in cleaned_order.split("|")]
+
+order_dict = {}
+for field in fields:
+    key, value = field.split(":", 1)
+    order_dict[key.strip().lower()] = value.strip()
+
+order_id_full = order_dict["order_id"].replace("#", "") 
+order_code, country_code = order_id_full.split("-")      
+
+customer_raw = order_dict["customer"].replace("'", "")     
+customer_name = customer_raw.title()                       
+
+item_raw = order_dict["item"].replace('"', '')            
+item_name = item_raw.title()                              
+
+price_raw = order_dict["price"].replace("$", "")           
+price_val = round(float(price_raw), 2) 
+
+price_formatted = f"${price_val:.2f}"                      
+
+
+summary_report = (
+    f"ORDER SUMMARY REPORT\n"
+    f"====================\n"
+    f"Order ID:\t{order_code}\n"
+    f"Country:\t{country_code}\n"
+    f"Customer:\t{customer_name}\n"
+    f"Item:\t\t{item_name}\n"
+    f"Price:\t\t{price_formatted}")
+
+print(summary_report)
