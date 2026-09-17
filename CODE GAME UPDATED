@@ -38,6 +38,10 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 
+
+# DAPAT ILIPAT SCRIPT SA IBANG NODE WAG IPAGSAMA YUNG NEW CHARACTER
+
+
 extends CharacterBody2D
 
 
