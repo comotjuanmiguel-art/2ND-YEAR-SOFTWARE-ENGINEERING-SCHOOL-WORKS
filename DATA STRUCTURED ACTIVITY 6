@@ -1,0 +1,144 @@
+class Patient:
+    def __init__(self, name, patient_id, reason):
+        self.name = name
+        self.id = patient_id
+        self.reason = reason
+
+    def __str__(self):
+        return f"[ID: {self.id}] {self.name} - Reason: {self.reason}"
+
+
+class HospitalQueue:
+    def __init__(self, size):
+        self.size = size
+        self.queue = [None] * size
+        self.front = -1
+        self.rear = -1
+
+    def is_empty(self):
+        return self.front == -1
+
+    def is_full(self):
+        return (self.rear + 1) % self.size == self.front
+
+    def register_patient(self, name, patient_id, reason):
+        if self.is_full():
+            print("❌ Cannot register patient. The Emergency Department queue is FULL!")
+            return False
+        
+        patient = Patient(name, patient_id, reason)
+        
+        if self.front == -1:
+            self.front = 0
+            self.rear = 0
+        else:
+            self.rear = (self.rear + 1) % self.size
+            
+        self.queue[self.rear] = patient
+        print(f"✅ Registered Successfully: {patient}")
+        return True
+
+    def call_next_patient(self):
+        if self.is_empty():
+            print("📭 No patients waiting in the queue.")
+            return None
+        
+        patient = self.queue[self.front]
+        self.queue[self.front] = None  
+        
+        if self.front == self.rear:
+            self.front = -1
+            self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.size
+            
+        print(f"🔊 Calling Next Patient to Doctor's Room: {patient}")
+        return patient
+
+    def view_next_patient(self):
+        if self.is_empty():
+            print("📭 No patients are currently waiting.")
+            return None
+        print(f"👀 Next up in line: {self.queue[self.front]}")
+        return self.queue[self.front]
+
+    def display_waiting_patients(self):
+        if self.is_empty():
+            print("📭 Emergency Department waiting area is empty.")
+            return
+        
+        print("\n--- Current Waiting Patients ---")
+        idx = self.front
+        while True:
+            print(self.queue[idx])
+            if idx == self.rear:
+                break
+            idx = (idx + 1) % self.size
+        print("--------------------------------")
+
+
+
+def main():
+   
+    hq = HospitalQueue(5)
+    
+    
+    sample_data = [
+        ("Maria", "P001", "Fever"),
+        ("Pedro", "P002", "Headache"),
+        ("Ana", "P003", "Cough"),
+        ("Carlo", "P004", "Injury"),
+        ("Diana", "P005", "Stomach Pain")
+    ]
+    
+    print("🏥 Initializing Emergency Department Queue with Sample Data...")
+    for name, pid, reason in sample_data:
+        hq.register_patient(name, pid, reason)
+
+    while True:
+        print("\n====== HOSPITAL EMERGENCY DEPARTMENT ======")
+        print("1. Register Patient")
+        print("2. Call Next Patient")
+        print("3. View Next Patient")
+        print("4. Display Waiting Patients")
+        print("5. Check Empty")
+        print("6. Check Full")
+        print("7. Exit")
+        
+        choice = input("Enter choice (1-7): ").strip()
+        
+        if choice == '1':
+            name = input("Enter Patient Name: ")
+            pid = input("Enter Patient ID: ")
+            reason = input("Enter Reason for Visit: ")
+            hq.register_patient(name, pid, reason)
+            
+        elif choice == '2':
+            hq.call_next_patient()
+            
+        elif choice == '3':
+            hq.view_next_patient()
+            
+        elif choice == '4':
+            hq.display_waiting_patients()
+            
+        elif choice == '5':
+            if hq.is_empty():
+                print("⚪ Yes, the queue is empty.")
+            else:
+                print("⚫ No, there are patients waiting.")
+                
+        elif choice == '6':
+            if hq.is_full():
+                print("🔴 Yes, the queue is completely full.")
+            else:
+                print("🟢 No, there are available slots in the queue.")
+                
+        elif choice == '7':
+            print("👋 Exiting Emergency Department Management System. Stay safe!")
+            break
+        else:
+            print("⚠️ Invalid entry. Please choose a number from 1 to 7.")
+
+if __name__ == "__main__":
+    main()
