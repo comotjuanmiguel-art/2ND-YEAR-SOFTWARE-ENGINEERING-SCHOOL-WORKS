@@ -23,7 +23,7 @@ class HospitalQueue:
 
     def register_patient(self, name, patient_id, reason):
         if self.is_full():
-            print("❌ Cannot register patient. The Emergency Department queue is FULL!")
+            print("Cannot register patient. The Emergency Department queue is FULL!")
             return False
         
         patient = Patient(name, patient_id, reason)
@@ -35,12 +35,12 @@ class HospitalQueue:
             self.rear = (self.rear + 1) % self.size
             
         self.queue[self.rear] = patient
-        print(f"✅ Registered Successfully: {patient}")
+        print(f"Registered Successfully: {patient}")
         return True
 
     def call_next_patient(self):
         if self.is_empty():
-            print("📭 No patients waiting in the queue.")
+            print("No patients waiting in the queue.")
             return None
         
         patient = self.queue[self.front]
@@ -52,19 +52,19 @@ class HospitalQueue:
         else:
             self.front = (self.front + 1) % self.size
             
-        print(f"🔊 Calling Next Patient to Doctor's Room: {patient}")
+        print(f"Calling Next Patient to Doctor's Room: {patient}")
         return patient
 
     def view_next_patient(self):
         if self.is_empty():
-            print("📭 No patients are currently waiting.")
+            print("No patients are currently waiting.")
             return None
-        print(f"👀 Next up in line: {self.queue[self.front]}")
+        print(f"Next up in line: {self.queue[self.front]}")
         return self.queue[self.front]
 
     def display_waiting_patients(self):
         if self.is_empty():
-            print("📭 Emergency Department waiting area is empty.")
+            print("Emergency Department waiting area is empty.")
             return
         
         print("\n--- Current Waiting Patients ---")
@@ -76,12 +76,9 @@ class HospitalQueue:
             idx = (idx + 1) % self.size
         print("--------------------------------")
 
-
-
 def main():
    
     hq = HospitalQueue(5)
-    
     
     sample_data = [
         ("Maria", "P001", "Fever"),
@@ -91,7 +88,7 @@ def main():
         ("Diana", "P005", "Stomach Pain")
     ]
     
-    print("🏥 Initializing Emergency Department Queue with Sample Data...")
+    print("Initializing Emergency Department Queue with Sample Data...")
     for name, pid, reason in sample_data:
         hq.register_patient(name, pid, reason)
 
@@ -124,21 +121,21 @@ def main():
             
         elif choice == '5':
             if hq.is_empty():
-                print("⚪ Yes, the queue is empty.")
+                print("Yes, the queue is empty.")
             else:
-                print("⚫ No, there are patients waiting.")
+                print("No, there are patients waiting.")
                 
         elif choice == '6':
             if hq.is_full():
-                print("🔴 Yes, the queue is completely full.")
+                print("Yes, the queue is completely full.")
             else:
-                print("🟢 No, there are available slots in the queue.")
+                print("No, there are available slots in the queue.")
                 
         elif choice == '7':
-            print("👋 Exiting Emergency Department Management System. Stay safe!")
+            print("Exiting Emergency Department Management System. Stay safe!")
             break
         else:
-            print("⚠️ Invalid entry. Please choose a number from 1 to 7.")
+            print("Invalid Choice. Please choose a number from 1 to 7.")
 
 if __name__ == "__main__":
     main()
