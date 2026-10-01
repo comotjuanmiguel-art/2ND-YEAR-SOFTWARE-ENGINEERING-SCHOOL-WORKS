@@ -4,10 +4,7 @@ class BIRTHDAY:
         self._foods = foods
         self._special_dish = special_dish
         self._secret_dish = secret_dish
-
-    def show_secret_dish(self):
-        print(f"secret_dish: {self._secret_dish}")
-
+  
     def show_menu(self):
         print(f"\ntheme: {self.theme}")
         print("foods:")
@@ -15,6 +12,9 @@ class BIRTHDAY:
             print(f"- {food}")
         print(f"special dish: {self._special_dish}")
         self.show_secret_dish()
+
+    def show_secret_dish(self):
+        print(f"secret_dish: {self._secret_dish}")
 
 party1 = BIRTHDAY(
   "Dooms day party",
