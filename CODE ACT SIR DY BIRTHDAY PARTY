@@ -1,0 +1,38 @@
+class BIRTHDAY:
+    def __init__(self, theme, foods, special_dish, secret_dish):
+        self.theme = theme
+        self._foods = foods
+        self._special_dish = special_dish
+        self._secret_dish = secret_dish
+
+    def show_secret_dish(self):
+        print(f"secret_dish: {self._secret_dish}")
+
+    def show_menu(self):
+        print(f"\ntheme: {self.theme}")
+        print("foods:")
+        for food in self._foods:
+            print(f"- {food}")
+        print(f"special dish: {self._special_dish}")
+        self.show_secret_dish()
+
+party1 = BIRTHDAY(
+  "Dooms day party",
+  ["pizza","chiken","soup"],
+  "rainbow cake","manggo shake")
+
+party2 = BIRTHDAY(
+  "Victor magtanggol party",
+  ["sisig","tapsilog","pares_overload"],
+  "chocolate bread","water"
+)
+
+party3 = BIRTHDAY(
+  "WOWOWIN PARTY",
+  ["kaldereta","spag","afritada"],
+  "burger","chocolate cake"
+)
+
+party1.show_menu()
+party2.show_menu()
+party3.show_menu()
