@@ -39,6 +39,10 @@ Party3 = BIRTHDAY(
     "chocolate cake"
 )
 
+
 Party1.show_menu()
+print()
 Party2.show_menu()
+print()
 Party3.show_menu()
+print()
