@@ -3,36 +3,42 @@ class BIRTHDAY:
         self.theme = theme
         self._foods = foods
         self._special_dish = special_dish
-        self._secret_dish = secret_dish
-  
+        self.__secret_dish = secret_dish 
+      
     def show_menu(self):
         print(f"\ntheme: {self.theme}")
         print("foods:")
         for food in self._foods:
             print(f"- {food}")
+        
         print(f"special dish: {self._special_dish}")
-        self.show_secret_dish()
+        self.__print_secret_dish()
 
-    def show_secret_dish(self):
-        print(f"secret_dish: {self._secret_dish}")
+    def __print_secret_dish(self):
+        print(f"secret dish: {self.__secret_dish}")
 
-party1 = BIRTHDAY(
-  "Dooms day party",
-  ["pizza","chiken","soup"],
-  "rainbow cake","manggo shake")
 
-party2 = BIRTHDAY(
-  "Victor magtanggol party",
-  ["sisig","tapsilog","pares_overload"],
-  "chocolate bread","water"
+Party1 = BIRTHDAY(
+    "Dooms day party",
+    ["pizza", "chiken", "soup"],
+    "rainbow cake",
+    "manggo shake"
 )
 
-party3 = BIRTHDAY(
-  "WOWOWIN PARTY",
-  ["kaldereta","spag","afritada"],
-  "burger","chocolate cake"
+Party2 = BIRTHDAY(
+    "Victor magtanggol party",
+    ["sisig", "tapsilog", "pares_overload"],
+    "chocolate bread",
+    "water"
 )
 
-party1.show_menu()
-party2.show_menu()
-party3.show_menu()
+Party3 = BIRTHDAY(
+    "WOWOWIN PARTY",
+    ["kaldereta", "spag", "afritada"],
+    "burger",
+    "chocolate cake"
+)
+
+Party1.show_menu()
+Party2.show_menu()
+Party3.show_menu()
