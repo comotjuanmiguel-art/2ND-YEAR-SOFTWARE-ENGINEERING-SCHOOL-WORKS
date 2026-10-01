@@ -1,0 +1,18 @@
+class SocMed: 
+    def __init__(self, username, bday, password): 
+        self.username = username 
+        self._bday = bday 
+        self._password = password 
+        
+    def get_activity_log(self, OTP): 
+        if OTP == "qwer": 
+          
+            return self._activity_log()
+        else: 
+            return "wrong one time password"
+            
+    def _activity_log(self):
+        return ["visit pedro", "view myday", "post"]
+
+fb = SocMed("juan", "jan 1,2006", "1234") 
+print(fb.get_activity_log("qwer"))
